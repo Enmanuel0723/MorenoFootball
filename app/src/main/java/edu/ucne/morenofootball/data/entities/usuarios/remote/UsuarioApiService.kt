@@ -17,5 +17,5 @@ interface UsuarioApiService {
     suspend fun login(@Body credenciales: LoginDto): Response<UsuarioResponseDto>
 
     @PUT("api/Usuarios")
-    suspend fun modificarCredenciales(credencialesDto: ModificarCredencialesDto): Response<Unit>
+    suspend fun modificarCredenciales(@Body credencialesDto: ModificarCredencialesDto): Response<UsuarioResponseDto>
 }
