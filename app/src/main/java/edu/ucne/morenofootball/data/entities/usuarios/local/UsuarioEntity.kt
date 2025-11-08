@@ -11,5 +11,5 @@ data class UsuarioEntity(
     val username: String,
     val email: String,
     val password: String,
-    val fechaRegistro: String = LocalDateTime.now().toString()
+    val fechaRegistro: String
 )
