@@ -15,11 +15,14 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun ProvidesMorenoFootballDb(@ApplicationContext appContext: Context) =
+    fun providesMorenoFootballDb(@ApplicationContext appContext: Context) =
         Room.databaseBuilder(
             appContext,
             MorenoFootballDb::class.java,
             "MorenoFootball.db"
         ).fallbackToDestructiveMigration()
             .build()
+
+    @Provides
+    fun provideUsuarioDao(db: MorenoFootballDb) = db.usuarioDao()
 }
