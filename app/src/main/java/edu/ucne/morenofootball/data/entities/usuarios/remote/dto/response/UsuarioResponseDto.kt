@@ -1,7 +1,7 @@
 package edu.ucne.morenofootball.data.entities.usuarios.remote.dto.response
 
 data class UsuarioResponseDto(
-    val usuarioId: Int = 0,
+    val usuarioId: Int,
     val username: String,
     val email: String,
     val password: String,
