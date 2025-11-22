@@ -13,5 +13,5 @@ interface UsuarioDao {
     suspend fun deleteById(id: Int): Int
 
     @Query("select * from usuarios limit 1")
-    suspend fun getUser(): UsuarioEntity
+    suspend fun getUser(): UsuarioEntity?
 }
