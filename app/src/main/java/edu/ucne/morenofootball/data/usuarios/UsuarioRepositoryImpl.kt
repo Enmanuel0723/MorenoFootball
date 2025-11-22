@@ -50,6 +50,6 @@ class UsuarioRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getUsuarioLoggeado(): Usuario =
-        local.getUser().toDomain()
+    override suspend fun getUsuarioLoggeado(): Usuario? =
+        local.getUser()?.toDomain()
 }
