@@ -1,4 +1,4 @@
-package edu.ucne.morenofootball.data.database
+package edu.ucne.morenofootball.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
