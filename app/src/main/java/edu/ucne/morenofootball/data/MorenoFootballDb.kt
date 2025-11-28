@@ -11,7 +11,7 @@ import edu.ucne.morenofootball.utils.DateAdapter
     entities = [
         UsuarioEntity::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(DateAdapter::class)
