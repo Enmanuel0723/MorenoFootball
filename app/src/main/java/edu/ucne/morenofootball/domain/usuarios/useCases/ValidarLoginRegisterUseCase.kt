@@ -4,6 +4,12 @@ import edu.ucne.morenofootball.utils.ValidationResult
 import javax.inject.Inject
 
 class ValidarLoginRegisterUseCase @Inject constructor() {
+    fun validarUsername(username: String): ValidationResult {
+        if (username.isBlank())
+            return ValidationResult(false, "Este campo es obligatorio *")
+        return ValidationResult(true)
+    }
+
     fun validarEmail(email: String): ValidationResult {
         if (email.isBlank()) return ValidationResult(false, "Este campo es obligatorio *")
 
@@ -14,7 +20,7 @@ class ValidarLoginRegisterUseCase @Inject constructor() {
         return ValidationResult(true)
     }
 
-    fun validarPassword(password: String): ValidationResult {
+    fun validarPasswordRegister(password: String): ValidationResult {
         if (password.isBlank())
             return ValidationResult(false, "Este campo es obligatorio *")
 
@@ -40,6 +46,12 @@ class ValidarLoginRegisterUseCase @Inject constructor() {
 
         if (password != confirmPassword)
             return ValidationResult(false, "Las contraseñas no coinciden *")
+        return ValidationResult(true)
+    }
+
+    fun validarPasswordLogin(password: String): ValidationResult {
+        if (password.isBlank())
+            return ValidationResult(false, "Este campo es obligatorio *")
         return ValidationResult(true)
     }
 }
