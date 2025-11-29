@@ -4,12 +4,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import edu.ucne.morenofootball.domain.usuarios.useCases.GetUsuarioLoggeadoUseCase
-import edu.ucne.morenofootball.domain.usuarios.useCases.LoginUseCase
-import edu.ucne.morenofootball.domain.usuarios.useCases.ModificarCredencialesUseCase
-import edu.ucne.morenofootball.domain.usuarios.useCases.RegisterUseCase
-import edu.ucne.morenofootball.domain.usuarios.useCases.UsuarioUseCases
-import edu.ucne.morenofootball.domain.usuarios.useCases.ValidarLoginRegisterUseCase
+import edu.ucne.morenofootball.domain.usuarios.useCases.*
+import edu.ucne.morenofootball.domain.productos.useCases.*
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -29,5 +25,21 @@ object DomainModule {
         modificarCredencialesUseCase = modificarCredencialesUseCase,
         validarLoginRegisterUseCase = validarLoginRegisterUseCase,
         getUsuarioLoggeadoUseCase = getUsuarioLoggeadoUseCase,
+    )
+
+    @Provides
+    @Singleton
+    fun providesProductoUseCases(
+        listByAvailabilityUseCase: ListByAvailabilityUseCase,
+        listByTipoUseCase: ListByTipoUseCase,
+        saveUseCase: SaveUseCase,
+        editUseCase: EditUseCase,
+        deleteUseCase: DeleteUseCase
+    ): ProductoUseCases = ProductoUseCases(
+        listByAvailability = listByAvailabilityUseCase,
+        listByTipo = listByTipoUseCase,
+        save = saveUseCase,
+        edit = editUseCase,
+        delete = deleteUseCase
     )
 }
