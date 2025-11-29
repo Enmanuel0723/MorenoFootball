@@ -1,7 +1,8 @@
 package edu.ucne.morenofootball.data.carritos.remote
 
 import edu.ucne.morenofootball.data.carritos.remote.dto.request.AgregarProductoParams
-import edu.ucne.morenofootball.data.carritos.remote.dto.request.ModificarCantidadParams
+import edu.ucne.morenofootball.data.carritos.remote.dto.request.ActionWithProductFromCardParams
+import edu.ucne.morenofootball.data.carritos.remote.dto.request.UserOrSessionIdParams
 import edu.ucne.morenofootball.data.carritos.remote.dto.response.CarritoResponse
 import edu.ucne.morenofootball.data.usuarios.remote.UsuarioRemoteDataSource.Companion.NETWORK_ERROR
 import edu.ucne.morenofootball.utils.Resource
@@ -27,14 +28,14 @@ class CarritoRemoteDataSource @Inject constructor(
             Resource.Error(networkError)
         }
 
-    suspend fun listByUsuarioId(): Resource<List<CarritoResponse>> =
+    suspend fun listByUsuarioId(params: UserOrSessionIdParams): Resource<List<CarritoResponse>> =
         executeApiCall(
-            apiCall = { api.listByUsuarioId() },
+            apiCall = { api.listByUsuarioId(params) },
             request = Unit,
         )
-    suspend fun getTotalCarrito(): Resource<Double> =
+    suspend fun getTotalCarrito(params: UserOrSessionIdParams): Resource<Double> =
         executeApiCall(
-            apiCall = { api.getTotalCarrito() },
+            apiCall = { api.getTotalCarrito(params) },
             request = Unit,
         )
     suspend fun agregarProducto(params: AgregarProductoParams): Resource<CarritoResponse> =
@@ -42,20 +43,26 @@ class CarritoRemoteDataSource @Inject constructor(
             apiCall = { api.agregarProducto(it) },
             request = params
         )
-    suspend fun aumentarCantidad(params: ModificarCantidadParams): Resource<CarritoResponse> =
+    suspend fun aumentarCantidad(params: ActionWithProductFromCardParams): Resource<CarritoResponse> =
         executeApiCall(
             apiCall = { api.aumentarCantidad(it) },
             request = params
         )
-    suspend fun disminuirCantidad(params: ModificarCantidadParams): Resource<CarritoResponse> =
+    suspend fun disminuirCantidad(params: ActionWithProductFromCardParams): Resource<CarritoResponse> =
         executeApiCall(
             apiCall = { api.disminuirCantidad(it) },
             request = params
         )
 
-    suspend fun vaciarCarrito(): Resource<Unit> =
+    suspend fun vaciarCarrito(params: UserOrSessionIdParams): Resource<Unit> =
         executeApiCall(
-            apiCall = { api.vaciarCarrito() },
+            apiCall = { api.vaciarCarrito(params) },
+            request = Unit
+        )
+
+    suspend fun deleteProduct(params: ActionWithProductFromCardParams): Resource<Unit> =
+        executeApiCall(
+            apiCall = { api.deleteProduct(params) },
             request = Unit
         )
 }
