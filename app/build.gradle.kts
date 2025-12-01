@@ -77,6 +77,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.icons.extended)
 
+    // coil para ver imagenes mediante url
+    implementation("io.coil-kt:coil-compose:2.4.0")
 
 
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.4")
