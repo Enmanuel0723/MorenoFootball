@@ -11,4 +11,5 @@ interface UsuarioRepository {
     suspend fun login(credenciales: Login): Resource<Unit>
     suspend fun modificarCredenciales(credenciales: ModificarCredenciales): Resource<Unit>
     suspend fun getUsuarioLoggeado(): Usuario?
+    suspend fun logout()
 }
