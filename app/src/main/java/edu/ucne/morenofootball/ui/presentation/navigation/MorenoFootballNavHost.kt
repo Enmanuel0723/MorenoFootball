@@ -17,6 +17,7 @@ import edu.ucne.morenofootball.ui.presentation.composables.BottomBar
 import edu.ucne.morenofootball.ui.presentation.composables.TopBar
 import edu.ucne.morenofootball.ui.presentation.home.HomeScreen
 import edu.ucne.morenofootball.ui.presentation.login.LoginScreen
+import edu.ucne.morenofootball.ui.presentation.miCuenta.MiCuentaScreen
 
 @Composable
 fun MorenoFootBallNavHost() {
@@ -80,6 +81,16 @@ fun AppScreen(
                 HomeScreen(
                     navigateToLogin = {
                         nav.navigate(Screen.Home) {
+                            popUpTo(Screen.Login) { inclusive = true }
+                        }
+                    }
+                )
+            }
+
+            composable<Screen.MiCuenta> {
+                MiCuentaScreen(
+                    navigateToLogin = {
+                        nav.navigate(Screen.Login) {
                             popUpTo(Screen.Login) { inclusive = true }
                         }
                     }
