@@ -1,6 +1,5 @@
 package edu.ucne.morenofootball.ui.presentation.home
 
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,6 +28,7 @@ class HomeViewModel @Inject constructor(
 
     init {
         getUserLoggeado()
+        loadProducts()
         loadProductsByTipo(1)
     }
 
@@ -36,7 +36,11 @@ class HomeViewModel @Inject constructor(
         when (event) {
             is HomeUiEvent.OnSearchQueryChange -> _state.update { it.copy(searchQuery = event.query) }
             is HomeUiEvent.OnCategorySelected -> onCategoriaSelected(event.category)
-            is HomeUiEvent.PullToRefresh -> _state.update { it.copy(isRefreshing = !it.isRefreshing) }
+            is HomeUiEvent.PullToRefresh -> {
+                _state.update { it.copy(isRefreshing = !it.isRefreshing) }
+                loadProducts()
+                loadProductsByTipo(1)
+            }
             is HomeUiEvent.LoadProducts -> loadProducts()
             is HomeUiEvent.LoadProductsByTipo -> loadProductsByTipo(event.tipo)
         }
@@ -50,9 +54,9 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun onCategoriaSelected(category: SelectableCategoryUiState) {
-        val updatedCategories = _state.value.categories.map {
-            it.copy(isSelected = it.id == category.id)
+    private fun onCategoriaSelected(categorySeleccionadaSelected: SelectableCategoryUiState) {
+        val updatedCategories = _state.value.categories.map { categoriaDentroDeListaCategorias ->
+            categoriaDentroDeListaCategorias.copy(isSelected = categoriaDentroDeListaCategorias.id == categorySeleccionadaSelected.id)
         }
         _state.update { it.copy(categories = updatedCategories) }
     }
@@ -63,8 +67,9 @@ class HomeViewModel @Inject constructor(
                 when (result) {
                     is Resource.Success -> _state.update {
                         it.copy(
-                            products = result.data ?: emptyList(),
-                            isLoading = false,
+                            products = result.data?.shuffled() ?: emptyList(),
+                            isLoadingAllProducts = false,
+                            isRefreshing = false,
                             error = null
                         )
                     }
@@ -72,14 +77,15 @@ class HomeViewModel @Inject constructor(
 
                     is Resource.Error -> _state.update {
                         it.copy(
-                            isLoading = false,
+                            isLoadingAllProducts = false,
                             error = result.message,
+                            isRefreshing = false,
                             message = "No hay productos...",
                             products = emptyList()
                         )
                     }
 
-                    is Resource.Loading -> _state.update { it.copy(isLoading = true) }
+                    is Resource.Loading -> _state.update { it.copy(isLoadingAllProducts = true) }
                 }
             }
         }
@@ -91,8 +97,9 @@ class HomeViewModel @Inject constructor(
                 when (result) {
                     is Resource.Success -> _state.update {
                         it.copy(
-                            productsFiltered = result.data ?: emptyList(),
-                            isLoading = false,
+                            productsFiltered = result.data?.shuffled() ?: emptyList(),
+                            isLoadingProductsFiltered = false,
+                            isRefreshing = false,
                             error = null
                         )
                     }
@@ -100,14 +107,15 @@ class HomeViewModel @Inject constructor(
 
                     is Resource.Error -> _state.update {
                         it.copy(
-                            isLoading = false,
+                            isLoadingProductsFiltered = false,
+                            isRefreshing = false,
                             error = result.message,
                             message = "No hay productos...",
                             productsFiltered = emptyList()
                         )
                     }
 
-                    is Resource.Loading -> _state.update { it.copy(isLoading = true) }
+                    is Resource.Loading -> _state.update { it.copy(isLoadingProductsFiltered = true) }
                 }
             }
         }
