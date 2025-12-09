@@ -31,7 +31,7 @@ class CarritoViewModel @Inject constructor(
     val state = _state.asStateFlow()
 
     val itemCount = _state.map { state ->
-        state.detallesCarrito.sumOf { it.cantidad }
+        state.carrito.detalles.sumOf { it.cantidad }
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
