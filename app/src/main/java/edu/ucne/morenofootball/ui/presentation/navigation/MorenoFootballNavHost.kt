@@ -110,7 +110,11 @@ fun AppScreen(
             }
 
             composable<Screen.Carrito> {
-                CarritoScreen()
+                CarritoScreen(
+                    navigateToHome = {
+                        nav.navigate(Screen.Home)
+                    }
+                )
             }
 
             composable<Screen.MiCuenta> {
