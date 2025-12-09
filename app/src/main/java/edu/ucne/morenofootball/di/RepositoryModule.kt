@@ -6,6 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import edu.ucne.morenofootball.data.carritos.CarritoRepositoryImpl
 import edu.ucne.morenofootball.data.carritos.remote.CarritoRemoteDataSource
+import edu.ucne.morenofootball.data.pedidos.PedidoRepositoryImpl
+import edu.ucne.morenofootball.data.pedidos.remote.PedidoRemoteDataSource
 import edu.ucne.morenofootball.data.productos.ProductoRepositoryImpl
 import edu.ucne.morenofootball.data.productos.remote.ProductoRemoteDataSource
 import edu.ucne.morenofootball.data.tarjetas.TarjetaRepositorImpl
@@ -14,6 +16,7 @@ import edu.ucne.morenofootball.data.usuarios.UsuarioRepositoryImpl
 import edu.ucne.morenofootball.data.usuarios.local.UsuarioDao
 import edu.ucne.morenofootball.data.usuarios.remote.UsuarioRemoteDataSource
 import edu.ucne.morenofootball.domain.carritos.CarritoRepository
+import edu.ucne.morenofootball.domain.pedidos.PedidoRepository
 import edu.ucne.morenofootball.domain.productos.ProductoRepository
 import edu.ucne.morenofootball.domain.tarjetas.TarjetaRepository
 import edu.ucne.morenofootball.domain.usuarios.UsuarioRepository
@@ -35,11 +38,16 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provudesTarjetaRepository(remote: TarjetaRemoteDataSource): TarjetaRepository =
+    fun providesTarjetaRepository(remote: TarjetaRemoteDataSource): TarjetaRepository =
         TarjetaRepositorImpl(remote)
 
     @Provides
     @Singleton
-    fun provudesCarritoRepository(remote: CarritoRemoteDataSource): CarritoRepository =
+    fun providesCarritoRepository(remote: CarritoRemoteDataSource): CarritoRepository =
         CarritoRepositoryImpl(remote)
+
+    @Provides
+    @Singleton
+    fun providesPedidoRepository(remote: PedidoRemoteDataSource): PedidoRepository =
+        PedidoRepositoryImpl(remote)
 }
