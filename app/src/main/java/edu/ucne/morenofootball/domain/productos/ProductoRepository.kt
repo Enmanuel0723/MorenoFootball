@@ -1,6 +1,8 @@
 package edu.ucne.morenofootball.domain.productos
 
-import edu.ucne.morenofootball.domain.productos.models.*
+import edu.ucne.morenofootball.domain.productos.models.Producto
+import edu.ucne.morenofootball.domain.productos.models.ProductoReq
+import edu.ucne.morenofootball.domain.productos.models.ProductoReqEdit
 import edu.ucne.morenofootball.utils.Resource
 
 interface ProductoRepository {

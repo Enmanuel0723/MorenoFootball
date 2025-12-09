@@ -6,9 +6,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import edu.ucne.morenofootball.domain.carritos.useCases.*
 import edu.ucne.morenofootball.domain.pedidos.useCases.*
-import edu.ucne.morenofootball.domain.usuarios.useCases.*
 import edu.ucne.morenofootball.domain.productos.useCases.*
 import edu.ucne.morenofootball.domain.tarjetas.useCases.*
+import edu.ucne.morenofootball.domain.usuarios.useCases.*
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)

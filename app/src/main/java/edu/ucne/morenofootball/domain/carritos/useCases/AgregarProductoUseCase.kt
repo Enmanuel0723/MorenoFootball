@@ -2,7 +2,6 @@ package edu.ucne.morenofootball.domain.carritos.useCases
 
 import edu.ucne.morenofootball.domain.carritos.CarritoRepository
 import edu.ucne.morenofootball.domain.carritos.models.request.AgregarProductoParams
-import edu.ucne.morenofootball.domain.carritos.models.response.CarritoResponse
 import edu.ucne.morenofootball.utils.Resource
 import javax.inject.Inject
 

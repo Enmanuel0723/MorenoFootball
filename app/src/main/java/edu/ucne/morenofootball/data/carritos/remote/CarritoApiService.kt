@@ -1,8 +1,5 @@
 package edu.ucne.morenofootball.data.carritos.remote
 
-import edu.ucne.morenofootball.data.carritos.remote.dto.request.AgregarProductoParamsReqDto
-import edu.ucne.morenofootball.data.carritos.remote.dto.request.ActionWithProductFromCardParamsReqDto
-import edu.ucne.morenofootball.data.carritos.remote.dto.request.UserOrSessionIdParamsReqDto
 import edu.ucne.morenofootball.data.carritos.remote.dto.response.CarritoResponseResDto
 import retrofit2.Response
 import retrofit2.http.DELETE
@@ -10,7 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Query
-import retrofit2.http.QueryMap
 
 interface CarritoApiService {
     @GET("api/Carrito/getByUsuarioId")

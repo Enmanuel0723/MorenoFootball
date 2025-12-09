@@ -2,7 +2,9 @@ package edu.ucne.morenofootball.data.productos
 
 import edu.ucne.morenofootball.data.productos.remote.ProductoRemoteDataSource
 import edu.ucne.morenofootball.domain.productos.ProductoRepository
-import edu.ucne.morenofootball.domain.productos.models.*
+import edu.ucne.morenofootball.domain.productos.models.Producto
+import edu.ucne.morenofootball.domain.productos.models.ProductoReq
+import edu.ucne.morenofootball.domain.productos.models.ProductoReqEdit
 import edu.ucne.morenofootball.utils.Resource
 import javax.inject.Inject
 

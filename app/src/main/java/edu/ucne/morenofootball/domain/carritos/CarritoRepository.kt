@@ -1,7 +1,9 @@
 package edu.ucne.morenofootball.domain.carritos
 
-import edu.ucne.morenofootball.domain.carritos.models.request.*
-import edu.ucne.morenofootball.domain.carritos.models.response.*
+import edu.ucne.morenofootball.domain.carritos.models.request.ActionWithProductFromCardParams
+import edu.ucne.morenofootball.domain.carritos.models.request.AgregarProductoParams
+import edu.ucne.morenofootball.domain.carritos.models.request.UserOrSessionIdParams
+import edu.ucne.morenofootball.domain.carritos.models.response.CarritoResponse
 import edu.ucne.morenofootball.utils.Resource
 
 interface CarritoRepository {
