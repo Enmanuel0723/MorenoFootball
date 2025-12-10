@@ -6,5 +6,4 @@ import javax.inject.Inject
 class DeseoRepository @Inject constructor(
     private val remote: DeseoRemoteDataSource
 ) {
-    // TODO("Not implemented yet.")
 }
